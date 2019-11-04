@@ -975,6 +975,7 @@ $hdlang["PP"] = "包装";
 $hdlang["ppack"] = "包装";
 $hdlang["prepare_by"] = "";
 $hdlang["Pressure Foot"] = "压脚";
+$hdlang["pre_booking"] = "预定";
 $hdlang["pre_payment"] = "预付款";
 $hdlang["Price"] = "价格";
 $hdlang["price_unit"] = "价钱单位";

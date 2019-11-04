@@ -975,6 +975,7 @@ $hdlang["PP"] = "P.P.";
 $hdlang["ppack"] = "Packing";
 $hdlang["prepare_by"] = "Issue / Prepare By";
 $hdlang["Pressure Foot"] = "Pressure Foot";
+$hdlang["pre_booking"] = "Pre Booking";
 $hdlang["pre_payment"] = "Pre Payment";
 $hdlang["Price"] = "Price";
 $hdlang["price_unit"] = "Price Unit";

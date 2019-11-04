@@ -975,6 +975,7 @@ $hdlang["PP"] = "";
 $hdlang["ppack"] = "";
 $hdlang["prepare_by"] = "";
 $hdlang["Pressure Foot"] = "";
+$hdlang["pre_booking"] = "";
 $hdlang["pre_payment"] = " 預付款";
 $hdlang["Price"] = "";
 $hdlang["price_unit"] = "";

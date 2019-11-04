@@ -22,5 +22,10 @@ class Database{
 			echo "DB connection error";
 		}	
 	}
+
+	public function closeConn() 
+	{
+		$this->conn = null; 
+	}
 }
 ?>
