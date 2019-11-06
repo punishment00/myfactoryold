@@ -12,12 +12,12 @@ include "../include/sidebar.php";
    
     <h3>Account Maintenance</h3>
     <div class="mb-2">
-        <a href="/myfactory/usr_acc/user_create.php" class="btn btn-primary btn-sm"><?= $hdlang["create_new_user"]; ?></a>
+        <a href="/myfactory/usr_acc/user_view.php" class="btn btn-primary btn-sm"><?= $hdlang["create_new_user"]; ?></a>
     </div>
 
     <div class="card">
         <div class="card-body">
-            <table class="table datatable table-sm table-bordered small">
+            <table class="table datatable table-sm table-bordered small table-hover">
                 <thead class="thead-light">
                     <tr>
                         <th>User ID</th>
@@ -30,8 +30,9 @@ include "../include/sidebar.php";
                     $res = $user_class->getAllUser(); 
                     while($row = $res->fetch(PDO::FETCH_ASSOC)) 
                     {
+                        $usr_id = $row["usr_id"];
                         $username = $row["username"]; 
-                        $full_name = $row["name"]; 
+                        $full_name = $row["full_name"]; 
                         
                         $position = $row["position"]; 
                         $position_desc = ($position == 1) ? "Admin" : "Normal User"; 
@@ -39,7 +40,7 @@ include "../include/sidebar.php";
                         $resign_date = $row["resign_date"]; 
                         $resign_style = ($resign_date < $today_date) ? "text-danger" : ""; 
                     ?>
-                    <tr class="<?= $resign_style; ?>">
+                    <tr class="pointer <?= $resign_style; ?>" onclick="window.location='user_view.php?usr_id=<?= $usr_id; ?>'">
                         <td><?= $username; ?></td>
                         <td><?= $full_name; ?></td>
                         <td><?= $position_desc; ?></td>

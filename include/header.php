@@ -10,7 +10,7 @@
     <script type="text/javascript" src="/myfactory/fontawesome-5.11.2/js/all.min.js"></script>
     <!-- bootstrap -->
     <link rel="stylesheet" type="text/css" href="/myfactory/bootstrap-4.3.1/css/bootstrap.min.css">
-    <script type="text/javascript" src="/myfactory/bootstrap-4.3.1/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="/myfactory/bootstrap-4.3.1/js/bootstrap.bundle.min.js"></script>
     <!-- datatable -->
     <link rel="stylesheet" type="text/css" href="/myfactory/datatable/dataTables.bootstrap4.min.css">
     <script type="text/javascript" src="/myfactory/datatable/jquery.dataTables.min.js"></script>

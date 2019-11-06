@@ -10,11 +10,11 @@ $db = new Database();
 
 if(isset($_SESSION["login_error"]))
 {
-    $login_error = ($_SESSION["login_error"]) ? true : false; 
+    $login_error = $_SESSION["login_error"]; 
 }
 else
 {
-    $login_error = false;
+    $login_error = 0;
 }
 
 if(isset($_POST["username"]))
@@ -76,8 +76,14 @@ include 'include/header.php';
                         <button class="btn btn-primary" type="submit">Login</button>
                     </div>
 
-                    <p class=" <?= ($login_error) ? "show" : "hide"; ?>" id="response_text">
-                        <?= ($login_error) ? "Invalid username or password!" : ""; ?>
+                    <p class=" <?= ($login_error!=0) ? "show" : "hide"; ?>" id="response_text">
+                        <?php 
+                        switch($login_error) 
+                        {
+                            case 1: echo "Invalid username or password!"; break; 
+                            case 2: echo "Your account is suspended."; break;
+                        }
+                        ?>
                     </p>
                 </form>
             </div>
