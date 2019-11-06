@@ -135,6 +135,19 @@ public function updateUser($usr_id, $arr_info)
     $query = $this->conn->prepare($sql); 
     $arr_info["usr_id"] = $usr_id; 
     $query->execute($arr_info); 
+
+    // log
+    $acctid = $arr_info["updated_by"]; 
+    $mn_id = 4; 
+    $desc = "Edit user info (usr_id: $usr_id)"; 
+
+    $query2 = $this->conn->prepare("INSERT INTO tbl_user_log (usr_id, mn_id, description) VALUES (:usr_id, :mn_id, :description)"); 
+    $query2->execute([
+        "usr_id" => $acctid, 
+        "mn_id" => $mn_id, 
+        "description" => $desc 
+    ]); 
+
 }
 
 

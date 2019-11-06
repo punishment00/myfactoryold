@@ -17,7 +17,7 @@
             <a class="dropdown-toggle" href="#" data-toggle="collapse" aria-expanded="false" data-target="#setup"><?= $hdlang["setup"]; ?></a>
             <ul class="collapse list-unstyled submenu" id="setup">
                 <li>
-                    <a href="/myfactory/usr_acc/index.php">Account Maintenance</a>
+                    <a href="/myfactory/user/index.php">Account Maintenance</a>
                 </li>
             </ul>
         </li>

@@ -12,7 +12,7 @@ include "../include/sidebar.php";
    
     <h3>Account Maintenance</h3>
     <div class="mb-2">
-        <a href="/myfactory/usr_acc/user_view.php" class="btn btn-primary btn-sm"><?= $hdlang["create_new_user"]; ?></a>
+        <a href="/myfactory/user/user_view.php" class="btn btn-primary btn-sm"><?= $hdlang["create_new_user"]; ?></a>
     </div>
 
     <div class="card">
