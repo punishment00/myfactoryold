@@ -8,30 +8,14 @@
     <div class="pt-2 sidebar-header border-bottom">
         <h5 class="text-center"><?= $_SESSION["username"]; ?></h5>
         <h6 class="text-center small" id="menu_datetime"></h6>
-        <p class="text-right mb-1 pr-3 small" id="btn-logout"><a href="./logout.php"><?= $hdlang["logout"]; ?> <i class="fa fa-sign-out-alt"></i></a></p>
-        <p class="text-right mb-2 pr-3 small"><a href="/myfactory/index.php"><?= $hdlang["home"]; ?> <i class="fa fa-home"></i> </a></p> 
+        <p class="text-right mb-1 pr-3 small" id="btn-logout"><a href="/myfactory/logout.php"><?= $hdlang["logout"]; ?> <i class="fa fa-sign-out-alt"></i></a></p>
+        <p class="text-right mb-2 pr-3 small"><a href="/myfactory/main/main.php"><?= $hdlang["home"]; ?> <i class="fa fa-home"></i> </a></p> 
     </div>
 
     <ul class="list-unstyled components">
-        <li>
-            <a class="dropdown-toggle" href="#" data-toggle="collapse" aria-expanded="false" data-target="#setup"><?= $hdlang["setup"]; ?></a>
-            <ul class="collapse list-unstyled submenu" id="setup">
-                <li>
-                    <a href="/myfactory/user/index.php">Account Maintenance</a>
-                </li>
-            </ul>
-        </li>
-        <li>
-            <a class="dropdown-toggle" href="#" data-toggle="collapse" aria-expanded="false" data-target="#misc">Miscellaneous <span class="caret"></span></a>
-            <ul class="collapse list-unstyled submenu" id="misc">
-                <?php 
-                $user_class->printMisc();
-                ?>
-            </ul>
-        </li>
-        <li>
-            <a href="#">2</a>
-        </li>
+        <?php 
+        $user_class->printMenu($acctid, $hdlang); 
+        ?>
     </ul>  
 </nav>
 

@@ -54,18 +54,18 @@ public function login($username, $input_password)
                 "description" => $desc 
             ]); 
 
-            header("Location: index.php"); 
+            header("Location: main/main.php"); 
 		}
 		else
 		{
 			$_SESSION["login_error"] = 1;
-            header("Location: login.php"); 
+            header("Location: index.php"); 
 		}
 	}
 	else
 	{
 		$_SESSION["login_error"] = 1;
-        header("Location: login.php"); 
+        header("Location: index.php"); 
 	}
 
 }
@@ -109,7 +109,7 @@ public function createNewUser($arr_info)
 
     // log
     $acctid = $arr_info["created_by"]; 
-    $mn_id = 4; 
+    $mn_id = 1; 
     $desc = "Create new user (usr_id: $usr_id)"; 
 
     $query2 = $this->conn->prepare("INSERT INTO tbl_user_log (usr_id, mn_id, description) VALUES (:usr_id, :mn_id, :description)"); 
@@ -138,7 +138,7 @@ public function updateUser($usr_id, $arr_info)
 
     // log
     $acctid = $arr_info["updated_by"]; 
-    $mn_id = 4; 
+    $mn_id = 1; 
     $desc = "Edit user info (usr_id: $usr_id)"; 
 
     $query2 = $this->conn->prepare("INSERT INTO tbl_user_log (usr_id, mn_id, description) VALUES (:usr_id, :mn_id, :description)"); 
@@ -178,15 +178,13 @@ public function createPermission($arr_info, $action)
     $query->execute(); 
 }
 
-public function updatePermission($arr_info, $action) 
+public function deletePermission($usr_id) 
 {
-    $sql = "DELETE FROM tbl_permission WHERE usr_id=:usr_id AND mn_id=:mn_id";
+    $sql = "DELETE FROM tbl_permission WHERE usr_id=:usr_id";
     $query = $this->conn->prepare($sql); 
-    $query->bindParam("usr_id", $arr_info["usr_id"]); 
-    $query->bindParam("mn_id", $arr_info["mn_id"]); 
+    $query->bindParam("usr_id", $usr_id); 
+    // $query->bindParam("mn_id", $arr_info["mn_id"]); 
     $query->execute(); 
-
-    $this->createPermission($arr_info, $action); 
 }
 
 public function getMenu() 
@@ -195,28 +193,88 @@ public function getMenu()
     return $sql; 
 }
 
-public function printMisc() 
+public function printMenu($usr_id, $hdlang) 
 {
-    $usr_id = $_SESSION["usr_id"]; 
+
 
     $sql = $this->conn->prepare("
         SELECT mn.* FROM tbl_permission psr 
         INNER JOIN tbl_menu mn ON mn.mn_id=psr.mn_id 
-        WHERE psr.usr_id=:usr_id AND psr.can_read=1 AND mn.mn_id IN (1,2,3)"); 
+        WHERE psr.usr_id=:usr_id AND psr.can_read=1"); 
     $sql->execute([
         "usr_id" => $usr_id 
     ]); 
 
+    $arr_mn_id = array(); 
     while($row = $sql->fetch(PDO::FETCH_ASSOC)) 
     {
+        $mn_id = $row["mn_id"]; 
+        $arr_mn_id[] = $mn_id; 
+
         $menu_desc = $row["description"]; 
         // remove blank space
         $menu_link = str_replace(" ", "", strtolower($menu_desc)); 
 
-        echo "<li>";
-        echo "<a href=\"/myfactory/". $menu_link ."\">". $menu_desc ."</a>"; 
-        echo "</li>"; 
+        // echo "<li>";
+        // echo "<a href=\"/myfactory/". $menu_link ."\">". $menu_desc ."</a>"; 
+        // echo "</li>"; 
     }
+
+    if(in_array(1, $arr_mn_id))
+    {
+        echo "<li>";
+        echo "<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\" data-target=\"#setup\">".$hdlang["setup"]."</a>"; 
+        echo "<ul class=\"collapse list-unstyled submenu\" id=\"setup\">";
+        echo "<li>"; 
+        echo "<a href=\"/myfactory/user/index.php\">Account Maintenance</a>";
+        echo "</li>";
+        echo "</ul>";
+        echo "</li>";
+    }
+
+    if(in_array(2, $arr_mn_id))
+    {
+        echo "<li>";
+        echo "<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\" data-target=\"#misc\">Miscellaneous</a>"; 
+            echo "<ul class=\"collapse list-unstyled submenu\" id=\"misc\">";
+                echo "<li>"; 
+                echo "<a href=\"#\">Cut Lot</a>";
+                echo "</li>";
+
+                echo "<li>"; 
+                echo "<a href=\"#\">Cut Group</a>";
+                echo "</li>";
+            echo "</ul>";
+        echo "</li>";
+    }
+
+    // order page 
+    echo "<li>";
+    echo "<a href=\"/myfactory/order/order.php\">Order</a>"; 
+    // echo "<a class=\"dropdown-toggle\" href=\"#\" data-toggle=\"collapse\" aria-expanded=\"false\" data-target=\"#order_menu\">Order</a>"; 
+        /*echo "<ul class=\"collapse list-unstyled submenu\" id=\"order_menu\">";
+            echo "<li>"; 
+            echo "<a href=\"#\">IA Master</a>";
+            echo "</li>";
+
+            if(in_array(3, $arr_mn_id))
+            {
+                echo "<li>";
+                echo "<a href=\"/myfactory/plan\">Cut Plan</a>"; 
+                echo "</li>";
+            }
+
+            if(in_array(4, $arr_mn_id))
+            {
+                echo "<li>";
+                echo "<a href=\"/myfactory/ticket\">Ticket</a>"; 
+                echo "</li>";
+            }
+            
+        echo "</ul>";*/
+    echo "</li>";
+    
+
 
 }
 

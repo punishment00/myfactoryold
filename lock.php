@@ -3,7 +3,7 @@ session_start();
 
 if(!isset($_SESSION["usr_id"]))
 {
-    header("Location: login.php"); 
+    header("Location: index.php"); 
     die;
 }
 
@@ -24,6 +24,9 @@ $hdlang =  $language->userLanguage();
 
 $user_class = new User(); 
 $user_class->setConn($db->conn); 
+
+$order_class = new Order(); 
+$order_class->setConn($db->conn); 
 
 
 $acctid = $_SESSION["usr_id"]; 

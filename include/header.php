@@ -18,6 +18,10 @@
     <link rel="stylesheet" type="text/css" href="/myfactory/datatable/fixedHeader.bootstrap4.min.css">
     <script type="text/javascript" src="/myfactory/datatable/dataTables.fixedHeader.min.js"></script>
 
+    <!-- jquery chosen -->
+    <link rel="stylesheet" type="text/css" href="/myfactory/chosen/chosen.min.css">
+    <script type="text/javascript" src="/myfactory/chosen/chosen.jquery.min.js"></script>
+
     <link rel="stylesheet" type="text/css" href="/myfactory/styles/common.css?date=<?= date("YmdHis"); ?>">
     <script type="text/javascript" src="/myfactory/scripts/script.js?date=<?= date("YmdHis"); ?>"></script>
     

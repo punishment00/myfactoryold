@@ -4,4 +4,6 @@ $(document).ready(function()
         "fixedHeader": true
     }); 
 
+    $(".chosen").chosen();
+
 }); 

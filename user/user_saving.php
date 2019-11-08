@@ -42,25 +42,21 @@ try
         $user_class->updateUser($usr_id, $arr_info); 
     }
 
+    if(!$is_new_user) 
+    {
+        $user_class->deletePermission($usr_id); 
+    }
+
     foreach ($arr_permission as $mn_id => $action) {
         $permission_info["mn_id"] = $mn_id; 
         $permission_info["usr_id"] = $usr_id; 
 
-        if($is_new_user)
-        {
-            // insert permission
-            $user_class->createPermission($permission_info, $action); 
-        }
-        else
-        {
-            $user_class->updatePermission($permission_info, $action); 
-        }
-        
+        // insert permission
+        $user_class->createPermission($permission_info, $action);         
     }
 
 
     $db->conn->commit(); 
-
     header("Location: user_view.php?usr_id=$usr_id"); 
 }
 catch(PDOException $e) {
